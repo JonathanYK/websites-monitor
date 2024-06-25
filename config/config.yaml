@@ -17,12 +17,3 @@ urls:
 - url: "https://www.reddit.com/"
   interval: 5
   regex: "Reddit"
-
-
-
-
-
-
-
-
-
