@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: postgresdb
+    env_file:
+      - .env
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: monitoring_app
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    depends_on:
+      - db
+    networks:
+      - app-network
+    volumes:
+      - .:/app
+    ports:
+      - "80:80"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER}" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres-db-volume:
+
+networks:
+  app-network:
+    driver: bridge
