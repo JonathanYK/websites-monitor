@@ -1,0 +1,28 @@
+urls:
+- url: "https://www.facebook.com/"
+  interval: 3
+  regex: "facebook"
+
+- url: "https://www.github.com/"
+  interval: 3
+
+- url: "https://www.linkedin.com/"
+  interval: 6
+  regex: "GitHub"
+
+- url: "https://www.stackoverflow.com/"
+  interval: 3
+  regex: "Stack Overflow"
+
+- url: "https://www.reddit.com/"
+  interval: 5
+  regex: "Reddit"
+
+
+
+
+
+
+
+
+
